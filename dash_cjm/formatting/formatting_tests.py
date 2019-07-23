@@ -11,7 +11,7 @@ class TestFormat(unittest.TestCase):
 
         test = convert_num_subscript(test)
 
-        self.assertEqual(test, codecs.decode('MoS\u2082', 'unicode_escape'), 'The formatting convert_num_subscript function is broken.')
+        self.assertEqual(test, 'MoS\u2082', 'The formatting convert_num_subscript function is broken.')
 
 
 if __name__ == '__main__':

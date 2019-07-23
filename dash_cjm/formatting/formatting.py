@@ -4,7 +4,18 @@ These functions will help deal with formatting in Dash, such as subscripting and
 
 """
 
-unicode_subscript = {str(num): codecs.decode('\u208' + str(num), 'unicode_escape') for num in range(0, 9)}
+# unicode_subscript = {str(num): codecs.decode('\u208' + str(num), 'unicode_escape') for num in range(0, 9)}
+unicode_subscript = {
+    '1': '\u2081',
+    '2': '\u2082',
+    '3': '\u2083',
+    '4': '\u2084',
+    '5': '\u2085',
+    '6': '\u2086',
+    '7': '\u2087',
+    '8': '\u2088',
+    '9': '\u2089',
+}
 
 # unicode_superscript = {str(num): '\u208' + str(num) for num in range(0, 9)}
 
