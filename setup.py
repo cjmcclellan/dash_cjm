@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.0.1",
     author="Connor McClellan",
     author_email="author@example.com",
-    description="Connor's Dash functions/classes",
+    description="Connor's Dash functions and classes",
     long_description=long_description,
     long_description_content_type="text/markdown",
     # url="https://github.com/pypa/sampleproject",
