@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: Dash-cjm
+Version: 0.0.1
+Summary: Connor's Dash functions/classes
+Home-page: UNKNOWN
+Author: Connor McClellan
+Author-email: author@example.com
+License: UNKNOWN
+Description: # dash_cjm
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
