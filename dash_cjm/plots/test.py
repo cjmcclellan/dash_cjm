@@ -12,7 +12,8 @@ from dash.dependencies import Input, Output, State
 plot = BasicPlot(x_label='Test X', y_label='Test Y', x_max=1, x_min=0.1,
                  y_max=1, y_min=0.1, x_scale='linear', y_scale='log')
 
-plot.add_data(0.2, 1, 'nothing', 'something')
+plot.add_data(0.2, 0.5, 'nothing', 'something')
+# plot.add_data(0.1, 0.5, 'nothing', 'yes')
 
 
 def basic_dash():
@@ -36,7 +37,9 @@ app = basic_dash()
 @app.callback(Output('Testing', 'figure'),
               [Input('blank', 'value')])
 def update_graph(blank):
+    plot.update_max_min(-1, 4)
     a = plot.get_plot()
+
     return a
 
 
