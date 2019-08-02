@@ -15,7 +15,12 @@ class BasicPlot(object):
           y_min:
           y_max:
       """
-    
+
+    # some class properties
+    marker_shapes = ['circle', 'square', 'triangle-left']
+    i_current_shape = 0
+    repeat_shape = 2
+
     def __init__(self, x_label, y_label, x_min=None, x_max=None, x_scale='linear', y_scale='linear', y_min=None, y_max=None):
 
         # save the input properties
@@ -40,7 +45,7 @@ class BasicPlot(object):
         self.y_tickfont = {'size': 15}
         self.y_titlefont = {'size': 20}
         self.y_exponentformat = 'power'
-        self.legend_pos = {'x': 1.02, 'y': 0.95}
+        self.legend = {'x': 1.02, 'y': 0.95, 'font': {'size': 15}}
         self.margin = {'l': 60, 'b': 40, 't': 10, 'r': 60}
         self.hovermode = 'closest'
         self.showlegend = True
@@ -52,17 +57,25 @@ class BasicPlot(object):
         self.mode = 'markers'
         self.opacity = 0.7
         self.marker = {
-                          'size': 15,
-                          'line': {'width': 1.0, 'color': 'black'},
-                          'symbol': 'circle'
-                      }
-        
+            'size': 15,
+            'line': {'width': 1.0, 'color': 'black'},
+            # 'symbol': 'circle'
+        }
+
         # placeholders
         self.data = {}
-    
+
     def add_data(self, x_data, y_data, text, name):
         if self.data.get(name, None) is None:
             self.data[name] = {'x': [], 'y': [], 'text': []}
+
+        self.data[name]['x'].append(x_data)
+        self.data[name]['y'].append(y_data)
+        self.data[name]['text'].append(text)
+
+    def add_special_data(self, x_data, y_data, text, name):
+        if self.data.get(name, None) is None:
+            self.data[name] = {'x': [], 'y': [], 'text': [], 'special': True}
 
         self.data[name]['x'].append(x_data)
         self.data[name]['y'].append(y_data)
@@ -78,18 +91,42 @@ class BasicPlot(object):
             'layout': self._get_layout()
         }
 
+    def _set_marker_shape(self, i):
+        if self.repeat_shape % i == 0:
+            self.i_current_shape += 1
+            if self.i_current_shape == len(self.marker_shapes):
+                self.i_current_shape = 0
+            self.marker['symbol'] = self.marker_shapes[self.i_current_shape]
+
     def _get_data(self):
         # add all the data points
-        data = [go.Scatter(
-            x=np.array(d['x']),
-            y=np.array(d['y']),
-            text=np.array(d['text']),
-            name=key,
-            mode=self.mode,
-            opacity=self.opacity,
-            marker=self.marker
+        data = []
+        i_shape = 0
+        for key, d in self.data.items():
+            self._set_marker_shape(i_shape + 1)
+            marker = self.marker
+            if d.get('special', None) is not None:
+                marker['symbol'] = 'star'
 
-        ) for key, d in self.data.items()]
+            data.append(go.Scatter(
+                x=np.array(d['x'][0]),
+                y=np.array(d['y'][0]),
+                text=np.array(d['text'][0]),
+                name=key,
+                mode=self.mode,
+                opacity=self.opacity,
+                marker=marker
+            ))
+        # data = [go.Scatter(
+        #     x=np.array(d['x'])[0],
+        #     y=np.array(d['y'])[0],
+        #     text=np.array(d['text'])[0],
+        #     name=key,
+        #     mode=self.mode,
+        #     opacity=self.opacity,
+        #     marker=self.marker
+        #
+        # ) for key, d in self.data.items()]
 
         # now add lines
         for line in self.lines:
@@ -137,13 +174,14 @@ class BasicPlot(object):
                 y_max = np.log10(self.y_max)
 
         layout = go.Layout(
-            xaxis={'type': self.x_scale, 'title': self.x_label, 'showline': self.x_showline, 'mirror': self.x_mirror, 'automargin': self.x_automargin,
+            xaxis={'type': self.x_scale, 'title': self.x_label, 'showline': self.x_showline, 'mirror': self.x_mirror,
+                   'automargin': self.x_automargin,
                    'tickfont': self.x_tickfont, 'titlefont': self.x_titlefont, 'range': [x_min, x_max]},
             yaxis={'type': self.y_scale, 'title': self.y_label, 'showline': self.y_showline, 'mirror': self.y_mirror,
                    'automargin': self.y_automargin, 'exponentformat': self.y_exponentformat,
                    'tickfont': self.y_tickfont, 'titlefont': self.y_titlefont, 'range': [y_min, y_max]},
             margin=self.margin,
-            legend=self.legend_pos,
+            legend=self.legend,
             showlegend=self.showlegend,
             hovermode=self.hovermode
         )
