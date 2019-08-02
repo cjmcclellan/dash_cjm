@@ -20,21 +20,33 @@ class BasicApp(object):
 
         self.name = name
 
-        self.app.layout = html.Div(
-            [dcc.Graph(self.name),
-             html.Div(
-                 style={'display': 'none'},
-                 children=
-                 [dcc.Input(name='blank',
-                           id='blank')]
-             )
-             ]
-
+        # app layout
+        self.app_layout = html.Div(
+            children=[
+                dcc.Graph(self.name),
+                html.Div(
+                    style={'display': 'none'},
+                    children=
+                    [dcc.Input(name='blank',
+                               id='blank')]
+                )
+            ]
         )
 
-        # self.plot.add_data(0.2, 0.5, 'nothing', 'something')
+    def add_div(self, div, top=True, bottom=False):
+        assert not top and bottom, 'You must choose to add to the top or the bottom'
+        assert top or bottom, 'You must choose to add to the top or the bottom'
+        assert isinstance(div, html.Div), 'The input must be of type Div'
+        if top:
+            self.app_layout.children = div + self.app_layout.children
+        elif bottom:
+            self.app_layout.children.append(div)
 
-        @self.app.callback(Output(name, 'figure'),
+    def build_app(self):
+
+        self.app.layout = self.app_layout
+
+        @self.app.callback(Output(self.name, 'figure'),
                       [Input('blank', 'value')])
         def update_graph(x_value):
             return self.plot.get_plot()
@@ -46,4 +58,9 @@ class BasicApp(object):
 if __name__ == '__main__':
     test = BasicApp('X', 'Y', 'Testing')
     test.add_data(0.1, 0.1, 'nothing', 'name')
+    html.Div(
+
+    )
+    test.add_div('')
+    test.build_app()
     test.app.run_server(debug=True)
