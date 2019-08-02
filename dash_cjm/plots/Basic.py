@@ -54,10 +54,15 @@ class BasicPlot(object):
                       }
         
         # placeholders
-        self.data = []
+        self.data = {}
     
     def add_data(self, x_data, y_data, text, name):
-        self.data.append([x_data, y_data, text, name])
+        if self.data.get(name, None) is None:
+            self.data[name] = {'x': [], 'y': [], 'text': []}
+
+        self.data[name]['x'].append(x_data)
+        self.data[name]['y'].append(y_data)
+        self.data[name]['text'].append(text)
 
     def get_plot(self):
         return {
@@ -67,15 +72,15 @@ class BasicPlot(object):
 
     def _get_data(self):
         data = [go.Scatter(
-            x=d[0],
-            y=d[1],
-            text=d[2],
-            name=d[3],
+            x=d['x'],
+            y=d['y'],
+            text=d['text'],
+            name=key,
             mode=self.mode,
             opacity=self.opacity,
             marker=self.marker
 
-        ) for d in self.data]
+        ) for key, d in self.data.items()]
         return data
 
     def _get_layout(self):
