@@ -6,7 +6,7 @@ def NamedInput(name, style=None, **kwargs):
     style = __get_style(style)
     return html.Div([
         html.P('{}:'.format(name), style=style),
-        dcc.Input(**kwargs)
+        dcc.Input(**kwargs, style=style)
         ])
 
 
@@ -35,7 +35,8 @@ def NamedRadio(name, style=None, **kwargs):
 
 
 def __get_style(style):
-    default_style = {'margin-left': '3px'}
+    # default_style = {'margin-left': '3px'}
+    default_style = {}
     if style is None:
         return default_style
     else:
