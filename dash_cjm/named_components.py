@@ -18,6 +18,14 @@ def NamedDropdown(name, style=None, **kwargs):
         ])
 
 
+def NamedChecklist(name, style=None, **kwargs):
+    style = __get_style(style)
+    return html.Div([
+        html.P('{}:'.format(name), style=style),
+        dcc.Checklist(**kwargs)
+    ])
+
+
 def NamedSlider(name, style=None, **kwargs):
     style = __get_style(style)
     return html.Div([

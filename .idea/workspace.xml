@@ -4,6 +4,8 @@
     <list default="true" id="15a0856b-8b26-4dc8-9ff5-4adc598c0e96" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dash_cjm/named_components.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cjm/named_components.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dash_cjm/plots/Basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cjm/plots/Basic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Dash_cjm-0.0.1-py3.6.egg" beforeDir="false" afterPath="$PROJECT_DIR$/dist/Dash_cjm-0.0.1-py3.6.egg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,17 +64,17 @@
       <file leaf-file-name="formatting.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dash_cjm/formatting/formatting.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+            <state relative-caret-position="340">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="named_components.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="named_components.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dash_cjm/named_components.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="289">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -80,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Basic.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Basic.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Basic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3145">
-              <caret line="186" column="9" selection-start-line="186" selection-start-column="9" selection-end-line="186" selection-end-column="9" />
+            <state relative-caret-position="551">
+              <caret line="242" selection-start-line="242" selection-end-line="242" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -153,8 +155,8 @@
         <option value="$PROJECT_DIR$/dash_cjm/plots/test.py" />
         <option value="$PROJECT_DIR$/rebuild.sh" />
         <option value="$PROJECT_DIR$/dash_cjm/plots/BasicApp.py" />
-        <option value="$PROJECT_DIR$/dash_cjm/plots/Basic.py" />
         <option value="$PROJECT_DIR$/dash_cjm/named_components.py" />
+        <option value="$PROJECT_DIR$/dash_cjm/plots/Basic.py" />
       </list>
     </option>
   </component>
@@ -178,7 +180,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -186,15 +187,11 @@
               <item name="dash_cjm" type="b2602c69:ProjectViewProjectNode" />
               <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="dash_cjm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
-              <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -318,7 +315,28 @@
       <option name="project" value="LOCAL" />
       <updated>1564785762739</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Adding styling to the named components">
+      <created>1564816677853</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1564816677853</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Adding styling to the named components 2">
+      <created>1564816712737</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1564816712737</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Adding styling to the named components 2">
+      <created>1564816807493</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1564816807493</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -362,8 +380,8 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.3286334" />
       <window_info active="true" anchor="bottom" id="Version Control" order="11" visible="true" weight="0.32876712" />
       <window_info anchor="bottom" id="Python Console" order="12" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286334" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26175982" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32771337" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2722745" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -391,7 +409,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixing bacis plot" />
     <MESSAGE value="Adding styling to the named components" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding styling to the named components" />
+    <MESSAGE value="Adding styling to the named components 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding styling to the named components 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -402,7 +421,7 @@
           <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="19" />
+      <option name="time" value="21" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -778,29 +797,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Basic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3145">
-          <caret line="186" column="9" selection-start-line="186" selection-start-column="9" selection-end-line="186" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dash_cjm/formatting/formatting.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        <state relative-caret-position="340">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dash_cjm/named_components.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="289">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Basic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="242" selection-start-line="242" selection-end-line="242" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
