@@ -1,5 +1,6 @@
 import plotly.graph_objs as go
 import numpy as np
+import copy
 
 
 class BasicPlot(object):
@@ -18,10 +19,26 @@ class BasicPlot(object):
 
     # some class properties
     marker_shapes = ['circle', 'square', 'triangle-left']
-    i_current_shape = 0
-    repeat_shape = 2
 
-    def __init__(self, x_label, y_label, x_min=None, x_max=None, x_scale='linear', y_scale='linear', y_min=None, y_max=None):
+    marker_color = [
+                    '#1f77b4',  # muted blue
+                    '#ff7f0e',  # safety orange
+                    # '#2ca02c',  # cooked asparagus green
+                    '#d62728',  # brick red
+                    '#9467bd',  # muted purple
+                    '#8c564b',  # chestnut brown
+                    '#e377c2',  # raspberry yogurt pink
+                    '#7f7f7f',  # middle gray
+                    '#bcbd22',  # curry yellow-green
+                    '#17becf'   # blue-teal
+                    ]
+
+    i_current_shape = 0
+    i_current_color = 0
+    i_special_color = 0
+
+    def __init__(self, x_label, y_label, x_min=None, x_max=None, x_scale='linear', y_scale='linear', y_min=None, y_max=None,
+                 all_classes=None):
 
         # save the input properties
         self.x_scale = x_scale
@@ -62,6 +79,13 @@ class BasicPlot(object):
             # 'symbol': 'circle'
         }
 
+        # now create markers for all the classes if all classes were given
+        self.class_markers = {}
+        if all_classes is not None:
+            for i, _class in enumerate(all_classes):
+                marker = self._set_marker_shape(i)
+                self.class_markers[_class] = marker
+
         # placeholders
         self.data = {}
 
@@ -81,6 +105,14 @@ class BasicPlot(object):
         self.data[name]['y'].append(y_data)
         self.data[name]['text'].append(text)
 
+    def add_highlight_subset_data(self, x_data, y_data, text, name, set):
+        if self.data.get(name, None) is None:
+            self.data[name] = {'x': [], 'y': [], 'text': [], 'highlight': True, 'set': set}
+
+        self.data[name]['x'].append(x_data)
+        self.data[name]['y'].append(y_data)
+        self.data[name]['text'].append(text)
+
     # add a trend line
     def add_line(self, x_data, y_data, name):
         self.lines.append({'x': x_data, 'y': y_data, 'name': name})
@@ -91,22 +123,44 @@ class BasicPlot(object):
             'layout': self._get_layout()
         }
 
-    def _set_marker_shape(self, i):
-        if self.repeat_shape % i == 0:
-            self.i_current_shape += 1
+    def _set_marker_shape(self, i, _class=None, data=None):
+        # if len(self.class_markers) != 0:
+        self.i_current_shape += 1
+        marker = copy.deepcopy(self.marker)
+        if self.class_markers.get(_class, None) is not None:
+            marker = self.class_markers[_class]
+
+        elif data is not None and data.get('set', None) is not None:
+            marker = copy.deepcopy(self.class_markers[data['set']])
+            marker['line']['width'] = 3.0
+
+        else:
             if self.i_current_shape == len(self.marker_shapes):
                 self.i_current_shape = 0
-            self.marker['symbol'] = self.marker_shapes[self.i_current_shape]
+                self.i_current_color += 1
+                if self.i_current_color == len(self.marker_color):
+                    self.i_current_color = 0
+            marker['symbol'] = self.marker_shapes[self.i_current_shape]
+            marker['color'] = self.marker_color[self.i_current_color]
+
+        # now check for special conditions
+        if data is not None:
+            if data.get('special', None) is not None:
+                marker['symbol'] = 'star'
+                marker['color'] = self.marker_color[self.i_special_color]
+                self.i_special_color += 1
+
+        return marker
 
     def _get_data(self):
         # add all the data points
         data = []
         i_shape = 0
         for key, d in self.data.items():
-            self._set_marker_shape(i_shape + 1)
-            marker = self.marker
-            if d.get('special', None) is not None:
-                marker['symbol'] = 'star'
+            marker = self._set_marker_shape(i_shape + 1, _class=key, data=d)
+            # self.marker
+            # if d.get('special', None) is not None:
+            #     marker['symbol'] = 'star'
 
             data.append(go.Scatter(
                 x=np.array(d['x'][0]),
