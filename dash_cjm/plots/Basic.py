@@ -1,6 +1,7 @@
 import plotly.graph_objs as go
 import numpy as np
 import copy
+from collections import OrderedDict
 
 
 class BasicPlot(object):
@@ -21,13 +22,13 @@ class BasicPlot(object):
     marker_shapes = ['circle', 'square', 'triangle-left']
 
     marker_color = [
+                    '#d62728',  # brick red
+                    '#9467bd',  # muted purple
                     '#1f77b4',  # muted blue
                     '#ff7f0e',  # safety orange
                     # '#2ca02c',  # cooked asparagus green
-                    '#d62728',  # brick red
-                    '#9467bd',  # muted purple
                     '#8c564b',  # chestnut brown
-                    '#e377c2',  # raspberry yogurt pink
+                    # '#e377c2',  # raspberry yogurt pink
                     '#7f7f7f',  # middle gray
                     '#bcbd22',  # curry yellow-green
                     '#17becf'   # blue-teal
@@ -39,6 +40,26 @@ class BasicPlot(object):
 
     def __init__(self, x_label, y_label, x_min=None, x_max=None, x_scale='linear', y_scale='linear', y_min=None, y_max=None,
                  all_classes=None):
+
+        # using the color and shapes, create unique combinations
+        self.marker_styles = []
+        # for i_color in range(len(self.marker_color)):
+        i_color = 0
+        i_repeat = len(self.marker_color)%len(self.marker_shapes)
+        if i_repeat != 0:
+            i_repeat = 0
+        else:
+            i_repeat = 1
+        for i_all in range(len(self.marker_color)*len(self.marker_shapes)):
+            for shape in self.marker_shapes:
+                # i_select = i_color
+                if i_color >= len(self.marker_color):
+                    i_color = i_repeat
+                    i_repeat += i_repeat
+                    # i_select = i_color - len(self.marker_color)
+                self.marker_styles.append((shape, self.marker_color[i_color]))
+                i_color += 1
+        # self.marker_styles = [(shape, color) for shape in self.marker_shapes for color in self.marker_color]
 
         # save the input properties
         self.x_scale = x_scale
@@ -87,7 +108,7 @@ class BasicPlot(object):
                 self.class_markers[_class] = marker
 
         # placeholders
-        self.data = {}
+        self.data = OrderedDict()
 
     def add_data(self, x_data, y_data, text, name):
         if self.data.get(name, None) is None:
@@ -124,24 +145,23 @@ class BasicPlot(object):
         }
 
     def _set_marker_shape(self, i, _class=None, data=None):
-        # if len(self.class_markers) != 0:
-        self.i_current_shape += 1
+
         marker = copy.deepcopy(self.marker)
         if self.class_markers.get(_class, None) is not None:
             marker = self.class_markers[_class]
 
-        elif data is not None and data.get('set', None) is not None:
+        elif data is not None and data.get('highlight', None) is not None:
             marker = copy.deepcopy(self.class_markers[data['set']])
             marker['line']['width'] = 3.0
 
         else:
-            if self.i_current_shape == len(self.marker_shapes):
+            if self.i_current_shape == len(self.marker_styles):
                 self.i_current_shape = 0
-                self.i_current_color += 1
-                if self.i_current_color == len(self.marker_color):
-                    self.i_current_color = 0
-            marker['symbol'] = self.marker_shapes[self.i_current_shape]
-            marker['color'] = self.marker_color[self.i_current_color]
+                # self.i_current_color += 1
+                # if self.i_current_color == len(self.marker_color):
+                #     self.i_current_color = 0
+            marker['symbol'] = self.marker_styles[self.i_current_shape][0]
+            marker['color'] = self.marker_styles[self.i_current_shape][1]
 
         # now check for special conditions
         if data is not None:
@@ -149,7 +169,7 @@ class BasicPlot(object):
                 marker['symbol'] = 'star'
                 marker['color'] = self.marker_color[self.i_special_color]
                 self.i_special_color += 1
-
+        self.i_current_shape += 1
         return marker
 
     def _get_data(self):
