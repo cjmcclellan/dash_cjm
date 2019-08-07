@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15a0856b-8b26-4dc8-9ff5-4adc598c0e96" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="15a0856b-8b26-4dc8-9ff5-4adc598c0e96" name="Default" comment="Changing BasicPlot colors">
+      <change beforePath="$PROJECT_DIR$/Dash_cjm.egg-info/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dash_cjm.egg-info/SOURCES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dash_cjm.egg-info/dependency_links.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dash_cjm.egg-info/requires.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dash_cjm.egg-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/formatting/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/formatting/formatting.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/formatting/formatting_tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/globals.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/loading.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/named_components.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/plots/Basic.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/plots/BasicApp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/plots/IVData.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/plots/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/dash_cjm/plots/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/test/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Dash_cjm-0.0.1-py3.6.egg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,9 +37,9 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="3" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -37,10 +55,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="py" value="531" />
+          <entry key="txt" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="PLAIN_TEXT" value="29" />
           <entry key="Python" value="531" />
         </counts>
       </usages-collector>
@@ -60,8 +80,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Basic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="159" column="21" selection-start-line="159" selection-start-column="21" selection-end-line="159" selection-end-column="21" />
+            <state relative-caret-position="5904">
+              <caret line="248" lean-forward="true" selection-start-line="248" selection-end-line="248" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,17 +168,6 @@
             <path>
               <item name="dash_cjm" type="b2602c69:ProjectViewProjectNode" />
               <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dash_cjm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
-              <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dash_cjm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
-              <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
-              <item name="plots" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -312,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564816807493</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Changing BasicPlot colors">
+      <created>1565216942527</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1565216942527</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -348,10 +367,9 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26518106" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2690808" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -363,9 +381,9 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.33853006" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.33801296" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" visible="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32831" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -387,7 +405,8 @@
     <MESSAGE value="Fixing bacis plot" />
     <MESSAGE value="Adding styling to the named components" />
     <MESSAGE value="Adding styling to the named components 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding styling to the named components 2" />
+    <MESSAGE value="Changing BasicPlot colors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changing BasicPlot colors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -499,8 +518,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Basic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="159" column="21" selection-start-line="159" selection-start-column="21" selection-end-line="159" selection-end-column="21" />
+        <state relative-caret-position="5904">
+          <caret line="248" lean-forward="true" selection-start-line="248" selection-end-line="248" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
