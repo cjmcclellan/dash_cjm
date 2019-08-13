@@ -33,6 +33,8 @@ def convert_num_subscript(string):
         >>>convert_num_subscript('MoS2')
         >>>'MoS\u2082'
     """
+    if isinstance(string, float):
+        return string
     assert isinstance(string, str), 'The input string must be of type str, not {0}'.format(type(string))
     new = ''.join([unicode_subscript[s] if s.isdigit() else s for s in list(string)])
     return new
