@@ -10,12 +10,14 @@ class BasicTable(HTMLObject):
                                              ' and data shape == (num rows, num columns)'
         result = html.Div(
             id=self.name,
+            style={},
             children=[
                 html.Table(
-                    [html.Tr([html.Th(col) for col in columns])] +
+                    [html.Tr([html.Th(col) for col in columns], className='thead-dark')] +
                     [html.Tr([
                         html.Td(j) for j in i
-                    ]) for i in data]
+                    ]) for i in data],
+                    className='table table-striped table-bordered table-sm'
                 )
             ]
         )

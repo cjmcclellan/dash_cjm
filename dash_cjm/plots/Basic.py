@@ -45,7 +45,7 @@ class BasicPlot(object):
         self.marker_styles = []
         # for i_color in range(len(self.marker_color)):
         i_color = 0
-        i_repeat = len(self.marker_color)%len(self.marker_shapes)
+        i_repeat = len(self.marker_color) % len(self.marker_shapes)
         if i_repeat != 0:
             i_repeat = 0
         else:
