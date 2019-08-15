@@ -1,5 +1,5 @@
 import unittest
-from dash_cjm.plots.Basic import BasicPlot
+from Basic import BasicPlot
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -34,11 +34,11 @@ class BasicApp(object):
         )
 
     def add_div(self, div, top=True, bottom=False):
-        # assert not top or not bottom, 'You must choose to add to the top or the bottom'
+        assert not top and bottom, 'You must choose to add to the top or the bottom'
         assert top or bottom, 'You must choose to add to the top or the bottom'
         assert isinstance(div, html.Div), 'The input must be of type Div'
         if top:
-            self.app_layout.children = [div] + self.app_layout.children
+            self.app_layout.children = div + self.app_layout.children
         elif bottom:
             self.app_layout.children.append(div)
 
@@ -57,10 +57,6 @@ class BasicApp(object):
 
 if __name__ == '__main__':
     test = BasicApp('X', 'Y', 'Testing')
-    test.add_data(0.1, 0.1, 'nothing', 'name')
-    html.Div(
-
-    )
     test.add_div('')
     test.build_app()
     test.app.run_server(debug=True)

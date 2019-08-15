@@ -17,4 +17,13 @@ dash_cjm/plots/BasicApp.py
 dash_cjm/plots/IVData.py
 dash_cjm/plots/__init__.py
 dash_cjm/plots/test.py
+dash_cjm/plots/Apps/BasicDjanoDashApp.py
+dash_cjm/plots/Apps/__init__.py
+dash_cjm/templates/__init__.py
+dash_cjm/templates/html_object.py
+dash_cjm/templates/html_tables/__init__.py
+dash_cjm/templates/html_tables/basic_table.py
+dash_cjm/templates/test/__init__.py
+dash_cjm/templates/test/tables.py
 test/__init__.py
+test/new_feature_tester.py
