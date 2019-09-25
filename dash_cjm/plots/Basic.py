@@ -39,7 +39,7 @@ class BasicPlot(object):
     i_special_color = 0
 
     def __init__(self, x_label, y_label, x_min=None, x_max=None, x_scale='linear', y_scale='linear', y_min=None, y_max=None,
-                 all_classes=None):
+                 all_classes=None, mode='markers', graph_height=None, graph_width=None):
 
         # using the color and shapes, create unique combinations
         self.marker_styles = []
@@ -70,6 +70,8 @@ class BasicPlot(object):
         self.y_label = y_label
         self.y_min = y_min
         self.y_max = y_max
+        self.graph_height = graph_height
+        self.graph_width = graph_width
 
         # save the basic properties for this plot
         self.x_showline = True
@@ -92,7 +94,7 @@ class BasicPlot(object):
         self.lines = []
 
         # basic marker properties
-        self.mode = 'markers'
+        self.mode = mode
         self.opacity = 0.7
         self.marker = {
             'size': 15,
@@ -110,13 +112,15 @@ class BasicPlot(object):
         # placeholders
         self.data = OrderedDict()
 
-    def add_data(self, x_data, y_data, text, name):
+    def add_data(self, x_data, y_data, text, name, mode):
         if self.data.get(name, None) is None:
-            self.data[name] = {'x': [], 'y': [], 'text': []}
+            self.data[name] = {'x': [], 'y': [], 'text': [], 'mode': []}
 
-        self.data[name]['x'].append(x_data)
-        self.data[name]['y'].append(y_data)
-        self.data[name]['text'].append(text)
+        self.__add_data(x_data, y_data, text, name, mode)
+        # self.data[name]['x'].append(x_data)
+        # self.data[name]['y'].append(y_data)
+        # self.data[name]['text'].append(text)
+        # self.data[name]['mode'].append(mode)
 
     def add_special_data(self, x_data, y_data, text, name):
         if self.data.get(name, None) is None:
@@ -134,11 +138,30 @@ class BasicPlot(object):
         self.data[name]['y'].append(y_data)
         self.data[name]['text'].append(text)
 
+    def __add_data(self, x_data, y_data, text, name, mode=None):
+
+        # if x and y_data are not lists, then append to the data
+        if not isinstance(x_data, list):
+            self.data[name]['x'].append(x_data)
+            self.data[name]['y'].append(y_data)
+        # else concat them
+        else:
+            self.data[name]['x'] += x_data
+            self.data[name]['y'] += y_data
+
+        self.data[name]['text'].append(text)
+
+        if mode is not None:
+            self.data[name]['mode'].append(mode)
+
     # add a trend line
     def add_line(self, x_data, y_data, name):
         self.lines.append({'x': x_data, 'y': y_data, 'name': name})
 
-    def get_plot(self):
+    def get_plot(self, new_data=None):
+        if new_data is not None:
+            for d in new_data:
+                self.add_data(list(d[0]), list(d[1]), d[2], d[3], d[4])
         return {
             'data': self._get_data(),
             'layout': self._get_layout()
@@ -162,6 +185,7 @@ class BasicPlot(object):
                 #     self.i_current_color = 0
             marker['symbol'] = self.marker_styles[self.i_current_shape][0]
             marker['color'] = self.marker_styles[self.i_current_shape][1]
+            self.class_markers[_class] = marker
 
         # now check for special conditions
         if data is not None:
@@ -183,11 +207,11 @@ class BasicPlot(object):
             #     marker['symbol'] = 'star'
 
             data.append(go.Scatter(
-                x=np.array(d['x'][0]),
-                y=np.array(d['y'][0]),
+                x=np.array(d['x']),
+                y=np.array(d['y']),
                 text=np.array(d['text'][0]),
                 name=key,
-                mode=self.mode,
+                mode=self.mode if d['mode'] is None else d['mode'][0],
                 opacity=self.opacity,
                 marker=marker
             ))
@@ -257,6 +281,21 @@ class BasicPlot(object):
             margin=self.margin,
             legend=self.legend,
             showlegend=self.showlegend,
-            hovermode=self.hovermode
+            hovermode=self.hovermode,
+            paper_bgcolor='rgba(0,0,0,0)',
+            height=self.graph_height if self.graph_height is not None else 450,
+            width=self.graph_width if self.graph_width is not None else 700,
+            # plot_bgcolor='rgba(0,0,0,0)'
         )
         return layout
+
+
+# if __name__ == '__main__':
+#     test = BasicPlot(x_label='X', y_label='Y')
+#     test.add_data(0.1, 0.1, 'nothing', 'name')
+#     # html.Div(
+#     #
+#     # )
+#     # test.add_div('')
+#     test.build_app()
+#     test.app.run_server(debug=True)

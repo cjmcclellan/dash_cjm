@@ -2,7 +2,6 @@ from dash_cjm.templates.html_tables.basic_table import BasicTable
 from dash_cjm.plots.BasicApp import BasicApp
 
 
-
 if __name__ == '__main__':
     test = BasicApp('X', 'Y', 'Testing')
     table = BasicTable(name='test_table')
