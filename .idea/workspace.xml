@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="15a0856b-8b26-4dc8-9ff5-4adc598c0e96" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash_cjm/formatting/formatting.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cjm/formatting/formatting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash_cjm/plots/Basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cjm/plots/Basic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash_cjm/plots/BasicApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cjm/plots/BasicApp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -184,10 +181,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1987" />
-    <option name="y" value="25" />
+    <option name="x" value="67" />
+    <option name="y" value="-2" />
     <option name="width" value="1853" />
-    <option name="height" value="1055" />
+    <option name="height" value="1082" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -445,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569376806459</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fixing Plotting2DApp">
+      <created>1569458364233</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1569458364233</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -526,7 +530,8 @@
     <MESSAGE value="Adding basic table" />
     <MESSAGE value="trying to fix formatting" />
     <MESSAGE value="adding Plotting2DApp" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding Plotting2DApp" />
+    <MESSAGE value="fixing Plotting2DApp" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing Plotting2DApp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
