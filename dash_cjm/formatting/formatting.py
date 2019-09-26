@@ -59,6 +59,8 @@ def create_dropdown_options(data):
 
 
 def round_to_n(x, n):
+    if x == 0:
+        return 0
     return round(x, -int(floor(log10(abs(x)))) + (n - 1))
 
 

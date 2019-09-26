@@ -15,9 +15,13 @@ class BasicApp(object):
 
     name = None
 
-    def __init__(self, x_label, y_label, name, x_scale='linear', y_scale='linear', django=False, hidden_update=True):
+    def __init__(self, x_label, y_label, name, x_scale='linear', y_scale='linear', django=False, hidden_update=True,
+                 graph_height=None, graph_width=None):
 
-        self.plot = BasicPlot(x_label=x_label, y_label=y_label, x_scale=x_scale, y_scale=y_scale)
+        self.graph_height = graph_height
+        self.graph_width = graph_width
+
+        self.init_plot(x_label=x_label, y_label=y_label, x_scale=x_scale, y_scale=y_scale)
 
         self.name = name
 
@@ -34,13 +38,17 @@ class BasicApp(object):
 
         # app layout
         self.app_layout = html.Div(
+            style={'margin': '0 auto'},
             children=[
                 dcc.Graph(self.name),
                 html.Div(
+                    className='col-sm',
                     style={'display': 'none'} if hidden_update else {},
                     children=
-                    [html.Button(name='update_' + self.name,
-                                 id='update_' + self.name)]
+                    [html.Button('Update',
+                                 name='update_' + self.name,
+                                 id='update_' + self.name,
+                                 className='alert')]
                 )
             ],
         )
@@ -54,9 +62,10 @@ class BasicApp(object):
         elif bottom:
             self.app_layout.children.append(div)
 
-    def reinit_plot(self, x_label, y_label, x_scale, y_scale):
+    def init_plot(self, x_label, y_label, x_scale, y_scale):
 
-        self.plot = BasicPlot(x_label=x_label, y_label=y_label, x_scale=x_scale, y_scale=y_scale)
+        self.plot = BasicPlot(x_label=x_label, y_label=y_label, x_scale=x_scale, y_scale=y_scale,
+                              graph_height=self.graph_height, graph_width=self.graph_width)
 
     def build_app(self):
 

@@ -141,13 +141,13 @@ class BasicPlot(object):
     def __add_data(self, x_data, y_data, text, name, mode=None):
 
         # if x and y_data are not lists, then append to the data
-        if not isinstance(x_data, list):
+        if not isinstance(x_data, list) and not isinstance(x_data, np.ndarray):
             self.data[name]['x'].append(x_data)
             self.data[name]['y'].append(y_data)
         # else concat them
         else:
-            self.data[name]['x'] += x_data
-            self.data[name]['y'] += y_data
+            self.data[name]['x'] += list(x_data)
+            self.data[name]['y'] += list(y_data)
 
         self.data[name]['text'].append(text)
 
@@ -161,7 +161,7 @@ class BasicPlot(object):
     def get_plot(self, new_data=None):
         if new_data is not None:
             for d in new_data:
-                self.add_data(list(d[0]), list(d[1]), d[2], d[3], d[4])
+                self.add_data(d[0], d[1], d[2], d[3], d[4])
         return {
             'data': self._get_data(),
             'layout': self._get_layout()
