@@ -2,9 +2,10 @@ import plotly.graph_objs as go
 import numpy as np
 import copy
 from collections import OrderedDict
+from .DashPlot import DashPlot
 
 
-class BasicPlot(object):
+class BasicPlot(DashPlot):
     """
         The BasicPlot class is a simple Dash plotting class.
       Args:
@@ -40,6 +41,8 @@ class BasicPlot(object):
 
     def __init__(self, x_label, y_label, x_min=None, x_max=None, x_scale='linear', y_scale='linear', y_min=None, y_max=None,
                  all_classes=None, mode='markers', graph_height=None, graph_width=None):
+
+        super(BasicPlot, self).__init__()
 
         # using the color and shapes, create unique combinations
         self.marker_styles = []

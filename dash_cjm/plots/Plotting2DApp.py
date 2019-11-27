@@ -185,8 +185,16 @@ class Plotting2DApp(BasicApp):
             if key != kwargs['x-value']:
                 not_plotted_input = key
 
+        # format the compute input to be flatten
+        formatted_compute = {}
+
+        for key in compute_input.keys():
+            formatted_compute[key] = compute_input[key].flatten()
         # now compute the data
-        output_data = self.compute_function(compute_input)
+        output_data = self.compute_function(formatted_compute)
+
+        for key in output_data.keys():
+            output_data[key] = np.reshape(output_data[key], newshape=input_base_dim)
 
         new_data = []
         for i in range(len(compute_input[kwargs['x-value']][0])):
