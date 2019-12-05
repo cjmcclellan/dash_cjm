@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15a0856b-8b26-4dc8-9ff5-4adc598c0e96" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/dash_cjm/plots/BaseApp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dash_cjm/plots/DashPlot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dash_cjm/plots/HeatMap.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dash_cjm/plots/PlottingHeatmap.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash_cjm/plots/Basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cjm/plots/Basic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash_cjm/plots/Plotting2DApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cjm/plots/Plotting2DApp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dash_cjm/plots/BaseApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cjm/plots/BaseApp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dash_cjm/plots/DashPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cjm/plots/DashPlot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dash_cjm/plots/HeatMap.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cjm/plots/HeatMap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dash_cjm/plots/PlottingHeatmap.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cjm/plots/PlottingHeatmap.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -68,29 +65,50 @@
       <file leaf-file-name="DashPlot.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dash_cjm/plots/DashPlot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+            <state relative-caret-position="243">
+              <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlottingHeatmap.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlottingHeatmap.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dash_cjm/plots/PlottingHeatmap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="193" column="69" selection-start-line="193" selection-start-column="69" selection-end-line="193" selection-end-column="69" />
+            <state relative-caret-position="306">
+              <caret line="126" column="9" lean-forward="true" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
               <folding>
-                <element signature="e#87#115#0" expanded="true" />
+                <element signature="e#87#129#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Plotting2DApp.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Plotting2DApp.py">
+      <file leaf-file-name="Basic.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Basic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+            <state relative-caret-position="130">
+              <caret line="85" column="28" lean-forward="true" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseApp.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dash_cjm/plots/BaseApp.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BasicApp.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dash_cjm/plots/BasicApp.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,8 +116,8 @@
       <file leaf-file-name="HeatMap.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dash_cjm/plots/HeatMap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+            <state relative-caret-position="136">
+              <caret line="8" column="57" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -121,6 +139,7 @@
       <find>x_</find>
       <find>y_</find>
       <find>self.</find>
+      <find>self.marg</find>
     </findStrings>
     <replaceStrings>
       <replace>self.x_</replace>
@@ -152,10 +171,10 @@
         <option value="$PROJECT_DIR$/dash_cjm/plots/BasicApp.py" />
         <option value="$PROJECT_DIR$/dash_cjm/plots/Basic.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/dash_cjm/plots/BaseApp.py" />
-        <option value="$PROJECT_DIR$/dash_cjm/plots/DashPlot.py" />
-        <option value="$PROJECT_DIR$/dash_cjm/plots/HeatMap.py" />
         <option value="$PROJECT_DIR$/dash_cjm/plots/PlottingHeatmap.py" />
+        <option value="$PROJECT_DIR$/dash_cjm/plots/HeatMap.py" />
+        <option value="$PROJECT_DIR$/dash_cjm/plots/DashPlot.py" />
+        <option value="$PROJECT_DIR$/dash_cjm/plots/BaseApp.py" />
       </list>
     </option>
   </component>
@@ -169,17 +188,16 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="-2" />
+    <option name="x" value="1987" />
+    <option name="y" value="25" />
     <option name="width" value="1853" />
-    <option name="height" value="1082" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -196,18 +214,13 @@
               <item name="dash_cjm" type="b2602c69:ProjectViewProjectNode" />
               <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
               <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
-              <item name="formatting" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dash_cjm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
-              <item name="dash_cjm" type="462c0819:PsiDirectoryNode" />
               <item name="plots" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -450,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569459323007</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Creating heatmap plotting">
+      <created>1574828160353</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1574828160354</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -495,30 +515,30 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="-2" width="1853" height="1082" extended-state="6" />
+    <frame x="810" y="737" width="1843" height="789" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32982087" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32771337" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="11" visible="true" weight="0.47418335" />
+      <window_info anchor="bottom" id="Version Control" order="11" visible="true" weight="0.6859756" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32982087" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32771337" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32665965" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3231876" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33667222" />
       <window_info anchor="bottom" id="Statistic" order="13" weight="0.32982087" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32982844" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.38672286" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.38672286" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,7 +561,8 @@
     <MESSAGE value="adding Plotting2DApp" />
     <MESSAGE value="fixing Plotting2DApp" />
     <MESSAGE value="fixing Plotting2DApp 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing Plotting2DApp 2" />
+    <MESSAGE value="Creating heatmap plotting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating heatmap plotting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -552,7 +573,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="84" />
+      <option name="time" value="85" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -611,9 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -808,9 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Apps/BasicDjanoDashApp.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/rebuild.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -858,9 +873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -868,19 +880,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Basic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2363">
-          <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -898,16 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/BasicApp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="66" column="26" lean-forward="true" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../Stanford_Projects/2DTrends/env2D/lib/python3.6/site-packages/dash/dash.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -915,47 +904,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Plotting2DApp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-629">
+          <caret line="14" column="62" lean-forward="true" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Apps/BasicDjanoDashApp.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/PlottingHeatmap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="126" column="9" lean-forward="true" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
+          <folding>
+            <element signature="e#87#129#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dash_cjm/plots/HeatMap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+        <state relative-caret-position="136">
+          <caret line="8" column="57" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/DashPlot.py">
+    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Basic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="130">
+          <caret line="85" column="28" lean-forward="true" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/BaseApp.py">
+    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/DashPlot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="86" column="41" selection-start-line="86" selection-start-column="41" selection-end-line="86" selection-end-column="41" />
+        <state relative-caret-position="243">
+          <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/BasicApp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/Plotting2DApp.py">
+    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/BaseApp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dash_cjm/plots/PlottingHeatmap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="193" column="69" selection-start-line="193" selection-start-column="69" selection-end-line="193" selection-end-column="69" />
-          <folding>
-            <element signature="e#87#115#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
         </state>
       </provider>
     </entry>

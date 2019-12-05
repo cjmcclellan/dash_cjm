@@ -39,7 +39,10 @@ class BaseApp(object):
         self.app_layout = html.Div(
             style={'margin': '0 auto'},
             children=[
-                dcc.Graph(self.name),
+                html.Div(
+                    dcc.Graph(self.name),
+                    style={'margin': '0 auto'},
+                ),
                 html.Div(
                     className='col-sm',
                     style={'display': 'none'} if hidden_update else {},

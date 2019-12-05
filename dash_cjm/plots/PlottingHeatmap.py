@@ -2,13 +2,13 @@
 A basic 2D Plotting App.
 """
 # from dash_cjm.dash_cjm.plots.BaseApp import BaseApp
-from dash_cjm.plots.BaseApp import BaseApp
-from dash_cjm.plots.HeatMap import DashHeatMap
+from dash_cjm.dash_cjm.plots.BaseApp import BaseApp
+from dash_cjm.dash_cjm.plots.HeatMap import DashHeatMap
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_table
-from dash_cjm.named_components import NamedRadio, NamedDropdown, NamedInput
-from dash_cjm.formatting.formatting import create_dropdown_options, create_dash_option, round_to_n
+from dash_cjm.dash_cjm.named_components import NamedRadio, NamedDropdown, NamedInput
+from dash_cjm.dash_cjm.formatting.formatting import create_dropdown_options, create_dash_option, round_to_n
 from dash.dependencies import Input, Output, State
 import numpy as np
 
@@ -113,12 +113,12 @@ class PlottingHeatmap(BaseApp):
     def update_graph_func(self, *args, **kwargs):
 
         # recreate the plot with the current x and y labels
-        self.init_plot()
+        self.init_plot(graph_width=self.graph_width, graph_height=self.graph_height)
 
         # create the compute input dict
         compute_input = {}
         for _input in kwargs['input_table']:
-            compute_input[_input['input_name']] = float(_input['input_value'])
+            compute_input[_input['input_name']] = np.array([float(_input['input_value'])])
 
         return self.compute_function(compute_input)
 
