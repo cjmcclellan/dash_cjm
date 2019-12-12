@@ -17,7 +17,7 @@ class PlottingHeatmap(BaseApp):
 
     plot_class = DashHeatMap
 
-    def __init__(self, x_variables, y_variables, inputs, outputs, compute_function, *args, **kwargs):
+    def __init__(self, x_variables, y_variables, inputs, outputs, compute_function, initial_inputs=None, *args, **kwargs):
 
         super(PlottingHeatmap, self).__init__(*args, **kwargs)
 
@@ -104,7 +104,7 @@ class PlottingHeatmap(BaseApp):
                               {'id': 'input_value', 'name': 'Input Value'}]
                     ),
                     data=[{'input_name': _input['name'],
-                           'input_value': 0} for _input in self.dash_inputs],
+                           'input_value': initial_inputs[_input['name']] if initial_inputs is not None else 0.0} for _input in self.dash_inputs],
                     editable=True,
                 )
             ])

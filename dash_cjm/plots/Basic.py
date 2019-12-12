@@ -20,7 +20,6 @@ class BasicPlot(DashPlot):
       """
 
     # some class properties
-    marker_shapes = ['circle', 'square', 'triangle-left']
 
     marker_color = [
                     '#d62728',  # brick red
@@ -40,9 +39,12 @@ class BasicPlot(DashPlot):
     i_special_color = 0
 
     def __init__(self, x_label, y_label, x_min=None, x_max=None, x_scale='linear', y_scale='linear', y_min=None, y_max=None,
-                 all_classes=None, mode='markers', graph_height=None, graph_width=None):
+                 all_classes=None, mode='markers', graph_height=None, graph_width=None,
+                 marker_shapes=('circle', 'square', 'triangle-left')):
 
         super(BasicPlot, self).__init__()
+
+        self.marker_shapes = marker_shapes
 
         # using the color and shapes, create unique combinations
         self.marker_styles = []
@@ -235,7 +237,7 @@ class BasicPlot(DashPlot):
                 go.Scatter(
                     x=line['x'],
                     y=line['y'],
-                    mode='lines',
+                    mode='lines+markers',
                     name=line['name']
                 )
             )
@@ -286,8 +288,8 @@ class BasicPlot(DashPlot):
             showlegend=self.showlegend,
             hovermode=self.hovermode,
             paper_bgcolor='rgba(0,0,0,0)',
-            height=self.graph_height if self.graph_height is not None else 450,
-            width=self.graph_width if self.graph_width is not None else 700,
+            # height=self.graph_height if self.graph_height is not None else 450,
+            # width=self.graph_width if self.graph_width is not None else 700,
             # plot_bgcolor='rgba(0,0,0,0)'
         )
         return layout

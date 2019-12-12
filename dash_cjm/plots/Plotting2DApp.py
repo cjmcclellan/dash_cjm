@@ -7,6 +7,7 @@ import dash_html_components as html
 from dash_cjm.dash_cjm.named_components import NamedRadio, NamedDropdown, NamedInput
 from dash_cjm.dash_cjm.formatting.formatting import create_dropdown_options, create_dash_option, round_to_n
 from dash.dependencies import Input, Output, State
+from dash_cjm.dash_cjm.plots.Basic import BasicPlot
 import numpy as np
 
 
@@ -134,6 +135,14 @@ class Plotting2DApp(BasicApp):
             ),
         ] + input_list
 
+    def init_plot(self, x_label, y_label, x_scale, y_scale):
+
+        self.plot = BasicPlot(x_label=x_label, y_label=y_label, x_scale=x_scale, y_scale=y_scale,
+                              graph_height=self.graph_height, graph_width=self.graph_width, marker_shapes=('circle',))
+
+        # make the plot only have circles
+        self.plot.marker['size'] = 8
+
     def update_graph_func(self, *args, **kwargs):
 
         # recreate the plot with the current x and y labels
@@ -199,7 +208,7 @@ class Plotting2DApp(BasicApp):
         new_data = []
         for i in range(len(compute_input[kwargs['x-value']][0])):
             label = '{0} = {1}'.format(not_plotted_input, round_to_n(compute_input[not_plotted_input][0][i], 3))
-            new_data.append([plot_input[kwargs['x-value']][:, i], output_data[kwargs['y-value']][:, i], label, label, 'lines'])
+            new_data.append([plot_input[kwargs['x-value']][:, i], output_data[kwargs['y-value']][:, i], label, label, 'lines+markers'])
 
         return new_data
 

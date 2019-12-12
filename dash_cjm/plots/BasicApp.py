@@ -1,5 +1,5 @@
 import unittest
-from .Basic import BasicPlot
+from dash_cjm.dash_cjm.plots.Basic import BasicPlot
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -66,6 +66,7 @@ class BasicApp(object):
 
         self.plot = BasicPlot(x_label=x_label, y_label=y_label, x_scale=x_scale, y_scale=y_scale,
                               graph_height=self.graph_height, graph_width=self.graph_width)
+
 
     def build_app(self):
 
