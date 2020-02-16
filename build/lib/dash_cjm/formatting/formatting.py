@@ -1,4 +1,5 @@
 import codecs
+from math import log10, floor
 """
 These functions will help deal with formatting in Dash, such as subscripting and greek letter.
 
@@ -38,3 +39,40 @@ def convert_num_subscript(string):
     assert isinstance(string, str), 'The input string must be of type str, not {0}'.format(type(string))
     new = ''.join([unicode_subscript[s] if s.isdigit() else s for s in list(string)])
     return new
+
+
+def create_dropdown_options(data):
+    """
+    Converts a list of strings to a dict for dash dropdown options
+    Args:
+        data (list): List of strings of the options
+
+    Returns: list of dictionary options
+
+    """
+    assert isinstance(data, list), 'You must give a list of strings.'
+    result = []
+    for d in data:
+        result.append({'value': create_dash_option(d), 'label': d})
+
+    return result
+
+
+def round_to_n(x, n):
+    if x == 0:
+        return 0
+    return round(x, -int(floor(log10(abs(x)))) + (n - 1))
+
+
+def create_dash_option(string):
+    """
+    Converts a generic string to be compatible with dash options for dropdown values
+    Args:
+        string (str):
+
+    Returns:
+
+    """
+    assert isinstance(string, str), 'You must pass a string object'
+    string.replace(' ', '_')
+    return string

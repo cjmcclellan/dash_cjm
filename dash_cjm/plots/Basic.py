@@ -131,17 +131,21 @@ class BasicPlot(DashPlot):
         if self.data.get(name, None) is None:
             self.data[name] = {'x': [], 'y': [], 'text': [], 'special': True}
 
-        self.data[name]['x'].append(x_data)
-        self.data[name]['y'].append(y_data)
-        self.data[name]['text'].append(text)
+        self.__add_data(x_data, y_data, text, name)
+
+        # self.data[name]['x'].append(x_data)
+        # self.data[name]['y'].append(y_data)
+        # self.data[name]['text'].append(text)
 
     def add_highlight_subset_data(self, x_data, y_data, text, name, set):
         if self.data.get(name, None) is None:
             self.data[name] = {'x': [], 'y': [], 'text': [], 'highlight': True, 'set': set}
 
-        self.data[name]['x'].append(x_data)
-        self.data[name]['y'].append(y_data)
-        self.data[name]['text'].append(text)
+        self.__add_data(x_data, y_data, text, name)
+
+        # self.data[name]['x'].append(x_data)
+        # self.data[name]['y'].append(y_data)
+        # self.data[name]['text'].append(text)
 
     def __add_data(self, x_data, y_data, text, name, mode=None):
 
@@ -176,7 +180,7 @@ class BasicPlot(DashPlot):
 
         marker = copy.deepcopy(self.marker)
         if self.class_markers.get(_class, None) is not None:
-            marker = self.class_markers[_class]
+            marker = copy.deepcopy(self.class_markers[_class])
 
         elif data is not None and data.get('highlight', None) is not None:
             marker = copy.deepcopy(self.class_markers[data['set']])
@@ -190,7 +194,6 @@ class BasicPlot(DashPlot):
                 #     self.i_current_color = 0
             marker['symbol'] = self.marker_styles[self.i_current_shape][0]
             marker['color'] = self.marker_styles[self.i_current_shape][1]
-            self.class_markers[_class] = marker
 
         # now check for special conditions
         if data is not None:
@@ -216,7 +219,7 @@ class BasicPlot(DashPlot):
                 y=np.array(d['y']),
                 text=np.array(d['text'][0]),
                 name=key,
-                mode=self.mode if d['mode'] is None else d['mode'][0],
+                mode=self.mode if d.get('mode', None) is None else d['mode'][0],
                 opacity=self.opacity,
                 marker=marker
             ))

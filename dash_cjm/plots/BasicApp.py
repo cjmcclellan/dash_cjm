@@ -1,5 +1,5 @@
 import unittest
-from dash_cjm.dash_cjm.plots.Basic import BasicPlot
+from dash_cjm.plots.Basic import BasicPlot
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -7,21 +7,13 @@ from dash.dependencies import Input, Output, State
 from django_plotly_dash import DjangoDash
 
 
-class BasicApp(object):
+class BaseApp(object):
 
     external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-    # app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-
     name = None
 
-    def __init__(self, x_label, y_label, name, x_scale='linear', y_scale='linear', django=False, hidden_update=True,
-                 graph_height=None, graph_width=None):
-
-        self.graph_height = graph_height
-        self.graph_width = graph_width
-
-        self.init_plot(x_label=x_label, y_label=y_label, x_scale=x_scale, y_scale=y_scale)
+    def __init__(self, name, django=False):
 
         self.name = name
 
@@ -29,6 +21,30 @@ class BasicApp(object):
             self.app = DjangoDash(name)
         else:
             self.app = dash.Dash(__name__, external_stylesheets=self.external_stylesheets)
+
+
+class BasicApp(BaseApp):
+
+    # external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+    # app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
+    def __init__(self, x_label, y_label, x_scale='linear', y_scale='linear', hidden_update=True,
+                 graph_height=None, graph_width=None, *args, **kwargs):
+
+        super(BasicApp, self).__init__(*args, **kwargs)
+
+        self.graph_height = graph_height
+        self.graph_width = graph_width
+
+        self.init_plot(x_label=x_label, y_label=y_label, x_scale=x_scale, y_scale=y_scale)
+
+        # self.name = name
+        #
+        # if django:
+        #     self.app = DjangoDash(name)
+        # else:
+        #     self.app = dash.Dash(__name__, external_stylesheets=self.external_stylesheets)
 
         self.update_function = None
 
@@ -66,7 +82,6 @@ class BasicApp(object):
 
         self.plot = BasicPlot(x_label=x_label, y_label=y_label, x_scale=x_scale, y_scale=y_scale,
                               graph_height=self.graph_height, graph_width=self.graph_width)
-
 
     def build_app(self):
 

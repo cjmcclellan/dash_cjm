@@ -2,9 +2,10 @@ import plotly.graph_objs as go
 import numpy as np
 import copy
 from collections import OrderedDict
+from .DashPlot import DashPlot
 
 
-class BasicPlot(object):
+class BasicPlot(DashPlot):
     """
         The BasicPlot class is a simple Dash plotting class.
       Args:
@@ -19,7 +20,6 @@ class BasicPlot(object):
       """
 
     # some class properties
-    marker_shapes = ['circle', 'square', 'triangle-left']
 
     marker_color = [
                     '#d62728',  # brick red
@@ -39,13 +39,18 @@ class BasicPlot(object):
     i_special_color = 0
 
     def __init__(self, x_label, y_label, x_min=None, x_max=None, x_scale='linear', y_scale='linear', y_min=None, y_max=None,
-                 all_classes=None):
+                 all_classes=None, mode='markers', graph_height=None, graph_width=None,
+                 marker_shapes=('circle', 'square', 'triangle-left')):
+
+        super(BasicPlot, self).__init__()
+
+        self.marker_shapes = marker_shapes
 
         # using the color and shapes, create unique combinations
         self.marker_styles = []
         # for i_color in range(len(self.marker_color)):
         i_color = 0
-        i_repeat = len(self.marker_color)%len(self.marker_shapes)
+        i_repeat = len(self.marker_color) % len(self.marker_shapes)
         if i_repeat != 0:
             i_repeat = 0
         else:
@@ -70,6 +75,8 @@ class BasicPlot(object):
         self.y_label = y_label
         self.y_min = y_min
         self.y_max = y_max
+        self.graph_height = graph_height
+        self.graph_width = graph_width
 
         # save the basic properties for this plot
         self.x_showline = True
@@ -92,7 +99,7 @@ class BasicPlot(object):
         self.lines = []
 
         # basic marker properties
-        self.mode = 'markers'
+        self.mode = mode
         self.opacity = 0.7
         self.marker = {
             'size': 15,
@@ -110,35 +117,60 @@ class BasicPlot(object):
         # placeholders
         self.data = OrderedDict()
 
-    def add_data(self, x_data, y_data, text, name):
+    def add_data(self, x_data, y_data, text, name, mode):
         if self.data.get(name, None) is None:
-            self.data[name] = {'x': [], 'y': [], 'text': []}
+            self.data[name] = {'x': [], 'y': [], 'text': [], 'mode': []}
 
-        self.data[name]['x'].append(x_data)
-        self.data[name]['y'].append(y_data)
-        self.data[name]['text'].append(text)
+        self.__add_data(x_data, y_data, text, name, mode)
+        # self.data[name]['x'].append(x_data)
+        # self.data[name]['y'].append(y_data)
+        # self.data[name]['text'].append(text)
+        # self.data[name]['mode'].append(mode)
 
     def add_special_data(self, x_data, y_data, text, name):
         if self.data.get(name, None) is None:
             self.data[name] = {'x': [], 'y': [], 'text': [], 'special': True}
 
-        self.data[name]['x'].append(x_data)
-        self.data[name]['y'].append(y_data)
-        self.data[name]['text'].append(text)
+        self.__add_data(x_data, y_data, text, name)
+
+        # self.data[name]['x'].append(x_data)
+        # self.data[name]['y'].append(y_data)
+        # self.data[name]['text'].append(text)
 
     def add_highlight_subset_data(self, x_data, y_data, text, name, set):
         if self.data.get(name, None) is None:
             self.data[name] = {'x': [], 'y': [], 'text': [], 'highlight': True, 'set': set}
 
-        self.data[name]['x'].append(x_data)
-        self.data[name]['y'].append(y_data)
+        self.__add_data(x_data, y_data, text, name)
+
+        # self.data[name]['x'].append(x_data)
+        # self.data[name]['y'].append(y_data)
+        # self.data[name]['text'].append(text)
+
+    def __add_data(self, x_data, y_data, text, name, mode=None):
+
+        # if x and y_data are not lists, then append to the data
+        if not isinstance(x_data, list) and not isinstance(x_data, np.ndarray):
+            self.data[name]['x'].append(x_data)
+            self.data[name]['y'].append(y_data)
+        # else concat them
+        else:
+            self.data[name]['x'] += list(x_data)
+            self.data[name]['y'] += list(y_data)
+
         self.data[name]['text'].append(text)
+
+        if mode is not None:
+            self.data[name]['mode'].append(mode)
 
     # add a trend line
     def add_line(self, x_data, y_data, name):
         self.lines.append({'x': x_data, 'y': y_data, 'name': name})
 
-    def get_plot(self):
+    def get_plot(self, new_data=None):
+        if new_data is not None:
+            for d in new_data:
+                self.add_data(d[0], d[1], d[2], d[3], d[4])
         return {
             'data': self._get_data(),
             'layout': self._get_layout()
@@ -148,7 +180,7 @@ class BasicPlot(object):
 
         marker = copy.deepcopy(self.marker)
         if self.class_markers.get(_class, None) is not None:
-            marker = self.class_markers[_class]
+            marker = copy.deepcopy(self.class_markers[_class])
 
         elif data is not None and data.get('highlight', None) is not None:
             marker = copy.deepcopy(self.class_markers[data['set']])
@@ -183,11 +215,11 @@ class BasicPlot(object):
             #     marker['symbol'] = 'star'
 
             data.append(go.Scatter(
-                x=np.array(d['x'][0]),
-                y=np.array(d['y'][0]),
+                x=np.array(d['x']),
+                y=np.array(d['y']),
                 text=np.array(d['text'][0]),
                 name=key,
-                mode=self.mode,
+                mode=self.mode if d.get('mode', None) is None else d['mode'][0],
                 opacity=self.opacity,
                 marker=marker
             ))
@@ -208,7 +240,7 @@ class BasicPlot(object):
                 go.Scatter(
                     x=line['x'],
                     y=line['y'],
-                    mode='lines',
+                    mode='lines+markers',
                     name=line['name']
                 )
             )
@@ -257,6 +289,21 @@ class BasicPlot(object):
             margin=self.margin,
             legend=self.legend,
             showlegend=self.showlegend,
-            hovermode=self.hovermode
+            hovermode=self.hovermode,
+            paper_bgcolor='rgba(0,0,0,0)',
+            # height=self.graph_height if self.graph_height is not None else 450,
+            # width=self.graph_width if self.graph_width is not None else 700,
+            # plot_bgcolor='rgba(0,0,0,0)'
         )
         return layout
+
+
+# if __name__ == '__main__':
+#     test = BasicPlot(x_label='X', y_label='Y')
+#     test.add_data(0.1, 0.1, 'nothing', 'name')
+#     # html.Div(
+#     #
+#     # )
+#     # test.add_div('')
+#     test.build_app()
+#     test.app.run_server(debug=True)
