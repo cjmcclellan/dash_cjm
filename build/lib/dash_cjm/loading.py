@@ -26,6 +26,14 @@ def load_csv_or_xls(contents, filename):
             decoded = base64.b64decode(content_string)
             # Assume that the user uploaded an excel file
             df = pd.read_excel(io.BytesIO(decoded))
+        elif 'txt' in filename:
+            content_type, content_string = contents.split(',')
+
+            decoded = base64.b64decode(content_string)
+            # Assume that the user uploaded a txt file
+            df = pd.read_csv(
+                io.StringIO(decoded.decode('utf-16')), sep='\t')
+
     except Exception as e:
         print(e)
         return html.Div([

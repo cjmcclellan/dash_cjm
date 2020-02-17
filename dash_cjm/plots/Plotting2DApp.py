@@ -13,7 +13,7 @@ import numpy as np
 
 class Plotting2DApp(BasicApp):
 
-    def __init__(self, x_variables, y_variables, inputs, outputs, compute_function, *args, **kwargs):
+    def __init__(self, x_variables, y_variables, inputs, outputs, compute_function, hidden_update=False, *args, **kwargs):
 
         self.x_options = create_dropdown_options(x_variables)
         self.y_options = create_dropdown_options(y_variables)
@@ -33,7 +33,7 @@ class Plotting2DApp(BasicApp):
             self.dash_inputs.append({'step_id': create_dash_option(_input) + '_step_id', 'min_id': create_dash_option(_input) + '_min_id',
                                      'max_id': create_dash_option(_input) + '_max_id', 'name': _input})
 
-        super(Plotting2DApp, self).__init__(x_label=initial_x, y_label=initial_y, hidden_update=False, *args, **kwargs)
+        super(Plotting2DApp, self).__init__(x_label=initial_x, y_label=initial_y, hidden_update=hidden_update, *args, **kwargs)
 
         # save the update graph function
         self.update_function = self.update_graph_func
@@ -109,7 +109,7 @@ class Plotting2DApp(BasicApp):
                             dcc.RadioItems(
                                 id='x-scale',
                                 options=[{'label': i, 'value': i} for i in ['linear', 'log']],
-                                value='log',
+                                value=self.plot.x_scale,
                             ),
                         ]
                     ),
@@ -127,7 +127,7 @@ class Plotting2DApp(BasicApp):
                             dcc.RadioItems(
                                 id='y-scale',
                                 options=[{'label': i, 'value': i} for i in ['linear', 'log']],
-                                value='log',
+                                value=self.plot.y_scale,
                             )
                         ]
                     ),
@@ -243,14 +243,14 @@ class StaticPlotting2DApp(Plotting2DApp):
         """
         self.init_plot(x_label=kwargs['x-value'], y_label=kwargs['y-value'], x_scale=kwargs['x-scale'], y_scale=kwargs['y-scale'])
 
-        data = self.compute_function()
+        data = self.compute_function(**kwargs)
 
-        new_data = []
+        new_data = {'plot_data': [], 'callback_data': data}
         # new_data = [[data[kwargs['x-value']], data[kwargs['y-value']], data[kwargs[self.class_name]], '', 'lines+markers']]
         for i in range(data[kwargs['x-value']].shape[0]):
             for j in range(data[kwargs['x-value']].shape[1]):
             # label = '{0} = {1}'.format(not_plotted_input, round_to_n(compute_input[not_plotted_input][0][i], 3))
-                new_data.append([data[kwargs['x-value']][i, j], data[kwargs['y-value']][i, j], '', data[self.class_name][i],
+                new_data['plot_data'].append([data[kwargs['x-value']][i, j], data[kwargs['y-value']][i, j], '', data[self.class_name][i],
                                  'lines+markers'])
 
         return new_data
