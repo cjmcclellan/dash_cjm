@@ -16,7 +16,7 @@ dash_cjm/formatting/__init__.py
 dash_cjm/formatting/formatting.py
 dash_cjm/formatting/formatting_tests.py
 dash_cjm/plots/2DPlottingApp.py
-dash_cjm/plots/BaseApp.py
+dash_cjm/plots/BaseApp(decom).py
 dash_cjm/plots/Basic.py
 dash_cjm/plots/BasicApp.py
 dash_cjm/plots/BasicInputPlotting.py
@@ -26,6 +26,7 @@ dash_cjm/plots/IVData.py
 dash_cjm/plots/Plotting2DApp.py
 dash_cjm/plots/PlottingHeatmap.py
 dash_cjm/plots/__init__.py
+dash_cjm/plots/plot_testing.py
 dash_cjm/plots/test.py
 dash_cjm/plots/Apps/BasicDjanoDashApp.py
 dash_cjm/plots/Apps/__init__.py

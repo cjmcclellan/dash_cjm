@@ -1,13 +1,20 @@
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_dangerously_set_inner_html
 
 
-def NamedInput(name, style=None, **kwargs):
+def NamedInput(name, style=None, raw_html=False, **kwargs):
     style = __get_style(style)
-    return html.Div([
-        html.P('{}:'.format(name), style=style),
-        dcc.Input(**kwargs, style=style)
+    if raw_html:
+        return html.Div([
+            html.P(dash_dangerously_set_inner_html.DangerouslySetInnerHTML('{}:'.format(name)), style=style),
+            dcc.Input(**kwargs, style=style)
         ])
+    else:
+        return html.Div([
+            html.P('{}:'.format(name), style=style),
+            dcc.Input(**kwargs, style=style)
+            ])
 
 
 def NamedDropdown(name, style=None, **kwargs):

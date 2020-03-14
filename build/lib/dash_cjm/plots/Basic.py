@@ -3,6 +3,7 @@ import numpy as np
 import copy
 from collections import OrderedDict
 from .DashPlot import DashPlot
+import os
 
 
 class BasicPlot(DashPlot):
@@ -39,8 +40,8 @@ class BasicPlot(DashPlot):
     i_special_color = 0
 
     def __init__(self, x_label, y_label, x_min=None, x_max=None, x_scale='linear', y_scale='linear', y_min=None, y_max=None,
-                 all_classes=None, mode='markers', graph_height=None, graph_width=None,
-                 marker_shapes=('circle', 'square', 'triangle-left')):
+                 all_classes=None, mode='markers', graph_height=None, graph_width=None, marker_size=15, line_width=3.0,
+                 marker_shapes=('circle', 'square', 'triangle-left'), figure_border=2, layout=None):
 
         super(BasicPlot, self).__init__()
 
@@ -75,8 +76,14 @@ class BasicPlot(DashPlot):
         self.y_label = y_label
         self.y_min = y_min
         self.y_max = y_max
-        self.graph_height = graph_height
-        self.graph_width = graph_width
+        self.figure_border = figure_border # width of the figure border
+
+        # save additional layout options added by the user and add graph height and graph width if they are not None
+        self.layout = layout if layout is not None else {}
+        if graph_width is not None:
+            self.layout['width'] = graph_width
+        if graph_height is not None:
+            self.layout['height'] = graph_height
 
         # save the basic properties for this plot
         self.x_showline = True
@@ -98,13 +105,17 @@ class BasicPlot(DashPlot):
         # placeholder for the lines
         self.lines = []
 
-        # basic marker properties
+        # basic marker and line properties
         self.mode = mode
+        # self.line_width = line_width
         self.opacity = 0.7
         self.marker = {
-            'size': 15,
+            'size': marker_size,
             'line': {'width': 1.0, 'color': 'black'},
             # 'symbol': 'circle'
+        }
+        self.line = {
+            'width': line_width
         }
 
         # now create markers for all the classes if all classes were given
@@ -117,37 +128,37 @@ class BasicPlot(DashPlot):
         # placeholders
         self.data = OrderedDict()
 
-    def add_data(self, x_data, y_data, text, name, mode):
+    def add_data(self, x_data, y_data, text, name, mode, error_y=None, error_x=None):
         if self.data.get(name, None) is None:
             self.data[name] = {'x': [], 'y': [], 'text': [], 'mode': []}
 
-        self.__add_data(x_data, y_data, text, name, mode)
+        self.__add_data(x_data, y_data, text, name, error_y, error_x, mode)
         # self.data[name]['x'].append(x_data)
         # self.data[name]['y'].append(y_data)
         # self.data[name]['text'].append(text)
         # self.data[name]['mode'].append(mode)
 
-    def add_special_data(self, x_data, y_data, text, name):
+    def add_special_data(self, x_data, y_data, text, name, error_y=None, error_x=None):
         if self.data.get(name, None) is None:
             self.data[name] = {'x': [], 'y': [], 'text': [], 'special': True}
 
-        self.__add_data(x_data, y_data, text, name)
+        self.__add_data(x_data, y_data, text, name, error_y, error_x)
 
         # self.data[name]['x'].append(x_data)
         # self.data[name]['y'].append(y_data)
         # self.data[name]['text'].append(text)
 
-    def add_highlight_subset_data(self, x_data, y_data, text, name, set):
+    def add_highlight_subset_data(self, x_data, y_data, text, name, set, error_y=None, error_x=None):
         if self.data.get(name, None) is None:
             self.data[name] = {'x': [], 'y': [], 'text': [], 'highlight': True, 'set': set}
 
-        self.__add_data(x_data, y_data, text, name)
+        self.__add_data(x_data, y_data, text, name, error_y, error_x)
 
         # self.data[name]['x'].append(x_data)
         # self.data[name]['y'].append(y_data)
         # self.data[name]['text'].append(text)
 
-    def __add_data(self, x_data, y_data, text, name, mode=None):
+    def __add_data(self, x_data, y_data, text, name, error_y=None, error_x=None, mode=None):
 
         # if x and y_data are not lists, then append to the data
         if not isinstance(x_data, list) and not isinstance(x_data, np.ndarray):
@@ -158,23 +169,39 @@ class BasicPlot(DashPlot):
             self.data[name]['x'] += list(x_data)
             self.data[name]['y'] += list(y_data)
 
+        # add the error y and x if they are not None
+        if error_y is not None:
+            assert isinstance(error_y, dict), 'The error_y data is not in dictionary form.  Please make sure error_y follows plotly format'
+            assert self.data[name].get('error_y', None) is None, 'You are attempting to add error to y_data that has already been added.' \
+                                                                 '  To add error data, you must add all the x and y data in a single add_data() call'
+            self.data[name]['error_y'] = error_y
+        if error_x is not None:
+            assert isinstance(error_x, dict), 'The error_x data is not in dictionary form.  Please make sure error_x follows plotly format'
+            assert self.data[name].get('error_x', None) is None, 'You are attempting to add error to x_data that has already been added.' \
+                                                                 '  To add error data, you must add all the x and y data in a single add_data() call'
+            self.data[name]['error_x'] = error_x
+
         self.data[name]['text'].append(text)
 
         if mode is not None:
             self.data[name]['mode'].append(mode)
 
     # add a trend line
-    def add_line(self, x_data, y_data, name):
-        self.lines.append({'x': x_data, 'y': y_data, 'name': name})
+    def add_line(self, x_data, y_data, mode='lines', name=None):
+        self.lines.append({'x': x_data, 'y': y_data, 'mode': mode, 'name': name})
 
-    def get_plot(self, new_data=None):
+    def get_plot(self, new_data=None, as_figure=False):
         if new_data is not None:
             for d in new_data:
                 self.add_data(d[0], d[1], d[2], d[3], d[4])
-        return {
+        plot = {
             'data': self._get_data(),
             'layout': self._get_layout()
         }
+        if as_figure:
+            return go.Figure(plot)
+        else:
+            return plot
 
     def _set_marker_shape(self, i, _class=None, data=None):
 
@@ -213,16 +240,33 @@ class BasicPlot(DashPlot):
             # self.marker
             # if d.get('special', None) is not None:
             #     marker['symbol'] = 'star'
+            scatter_dict = {
+                'x': np.array(d['x']),
+                'y': np.array(d['y']),
+                'text': np.array(d['text'][0]),
+                'name': key,
+                'mode': self.mode if d.get('mode', None) is None else d['mode'][0],
+                'opacity': self.opacity,
+                'marker': marker,
+                # 'line'
+            }
+            error_y = d.get('error_y', None)
+            error_x = d.get('error_x', None)
+            if error_y is not None:
+                scatter_dict['error_y'] = error_y
+            if error_x is not None:
+                scatter_dict['error_x'] = error_x
 
-            data.append(go.Scatter(
-                x=np.array(d['x']),
-                y=np.array(d['y']),
-                text=np.array(d['text'][0]),
-                name=key,
-                mode=self.mode if d.get('mode', None) is None else d['mode'][0],
-                opacity=self.opacity,
-                marker=marker
-            ))
+            data.append(go.Scatter(**scatter_dict))
+            # data.append(go.Scatter(
+            #     x=np.array(d['x']),
+            #     y=np.array(d['y']),
+            #     text=np.array(d['text'][0]),
+            #     name=key,
+            #     mode=self.mode if d.get('mode', None) is None else d['mode'][0],
+            #     opacity=self.opacity,
+            #     marker=marker
+            # ))
         # data = [go.Scatter(
         #     x=np.array(d['x'])[0],
         #     y=np.array(d['y'])[0],
@@ -236,12 +280,14 @@ class BasicPlot(DashPlot):
 
         # now add lines
         for line in self.lines:
+            showlegend = False if line['name'] is None else True
             data.append(
                 go.Scatter(
                     x=line['x'],
                     y=line['y'],
-                    mode='lines+markers',
-                    name=line['name']
+                    mode=line['mode'],
+                    name=line['name'],
+                    showlegend=showlegend,
                 )
             )
 
@@ -279,24 +325,65 @@ class BasicPlot(DashPlot):
             if self.y_max is not None:
                 y_max = np.log10(self.y_max)
 
-        layout = go.Layout(
-            xaxis={'type': self.x_scale, 'title': self.x_label, 'showline': self.x_showline, 'mirror': self.x_mirror,
-                   'automargin': self.x_automargin,
-                   'tickfont': self.x_tickfont, 'titlefont': self.x_titlefont, 'range': [x_min, x_max]},
-            yaxis={'type': self.y_scale, 'title': self.y_label, 'showline': self.y_showline, 'mirror': self.y_mirror,
-                   'automargin': self.y_automargin, 'exponentformat': self.y_exponentformat,
-                   'tickfont': self.y_tickfont, 'titlefont': self.y_titlefont, 'range': [y_min, y_max]},
-            margin=self.margin,
-            legend=self.legend,
-            showlegend=self.showlegend,
-            hovermode=self.hovermode,
-            paper_bgcolor='rgba(0,0,0,0)',
-            # height=self.graph_height if self.graph_height is not None else 450,
-            # width=self.graph_width if self.graph_width is not None else 700,
-            # plot_bgcolor='rgba(0,0,0,0)'
-        )
+        layout_dict = {
+            'xaxis': {'type': self.x_scale, 'title': self.x_label, 'showline': self.x_showline, 'mirror': self.x_mirror,
+                      'automargin': self.x_automargin, 'linecolor': 'black', 'linewidth': self.figure_border,
+                      'tickfont': self.x_tickfont, 'titlefont': self.x_titlefont, 'range': [x_min, x_max]},
+            'yaxis': {'type': self.y_scale, 'title': self.y_label, 'showline': self.y_showline, 'mirror': self.y_mirror,
+                      'automargin': self.y_automargin, 'exponentformat': self.y_exponentformat, 'linecolor': 'black',
+                      'linewidth': self.figure_border,
+                      'tickfont': self.y_tickfont, 'titlefont': self.y_titlefont, 'range': [y_min, y_max]},
+            'margin': self.margin,
+            'legend': self.legend,
+            'showlegend': self.showlegend,
+            'hovermode': self.hovermode,
+            'paper_bgcolor': 'rgba(0,0,0,0)',
+
+            # 'height': self.graph_height if self.graph_height is not None else 700,
+            # 'width': self.graph_width if self.graph_width is not None else 700,
+            # 'plot_bgcolor': '#fff',
+            **self.layout,
+        }
+
+        # for key in (('height', 'graph_height'), ('width', 'graph_width'), ('layout', 'layout')):
+        #     if self.__dict__[key[1]] is not None:
+        #         layout_dict[key[0]] =
+        layout = go.Layout(**layout_dict)
+        # layout = go.Layout(
+        #     xaxis={'type': self.x_scale, 'title': self.x_label, 'showline': self.x_showline, 'mirror': self.x_mirror,
+        #            'automargin': self.x_automargin,
+        #            'tickfont': self.x_tickfont, 'titlefont': self.x_titlefont, 'range': [x_min, x_max]},
+        #     yaxis={'type': self.y_scale, 'title': self.y_label, 'showline': self.y_showline, 'mirror': self.y_mirror,
+        #            'automargin': self.y_automargin, 'exponentformat': self.y_exponentformat,
+        #            'tickfont': self.y_tickfont, 'titlefont': self.y_titlefont, 'range': [y_min, y_max]},
+        #     margin=self.margin,
+        #     legend=self.legend,
+        #     showlegend=self.showlegend,
+        #     hovermode=self.hovermode,
+        #     paper_bgcolor='rgba(0,0,0,0)',
+        #     # **self.layout if self.layout is not None else None,
+        #     height=self.graph_height if self.graph_height is not None else 700,
+        #     width=self.graph_width if self.graph_width is not None else 700,
+        #     plot_bgcolor='#fff'
+        # )
         return layout
 
+    def save_plot(self, name, path='', file_type='svg'):
+        """
+        Save the plot as a static image of type file_type
+        Args:
+            name (str): Name of the static image
+            path (str): Path to where the image will be saved. Default is local folder
+            file_type (str): The type of image file.  Current options are 'svg' or 'png'.  svg is recommend as this is a vectorized format.
+
+        Returns:
+            None
+        """
+        assert file_type is 'svg' or file_type is 'png', 'Invalid file_type {0}.  Must either be png or svg.'.format(file_type)
+
+        # first get the plot then save it
+        plot = self.get_plot(as_figure=True)
+        plot.write_image(os.path.join(path, '{0}.{1}'.format(name, file_type)))
 
 # if __name__ == '__main__':
 #     test = BasicPlot(x_label='X', y_label='Y')
